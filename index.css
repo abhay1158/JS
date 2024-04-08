@@ -1,0 +1,33 @@
+
+ div{
+    color: red;
+    font-size: 32px;
+ }
+
+ .mtTestDivs{
+    color: blue;
+}
+
+.myTestDiv2{
+    color: green;
+}
+
+#secondDiv{
+    font-size: 16px;
+    color: magenta;
+}
+
+#secondDiv > span:hover{
+
+    font-size: 100px;
+}
+#secondDiv > div:hover{
+    background-color: aqua;
+    color: black;
+}
+.language{
+    color:red;
+    font-size: 32px;
+    font-style: oblique;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

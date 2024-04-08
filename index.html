@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <title>Index page</title>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <h1>My self Abhay</h1>
+    <span>this is para</span>
+    <div>This is div</div>
+    <button type="button" onclick="myFunction()">Click me to get Date</button>
+    <!-- <script src="main.js"> -->
+ 
+    <div class="mtTestDivs">abhay1</div>
+    <div id="secondDiv" class="mtTestDivs">outer div
+
+        <span class="innerDivOfSecondDiv">inner1</span>
+        <div class="innerDivOfSecondDiv">inner2</div>
+        <div class="innerDivOfSecondDiv">inner3</div>
+        <div class="innerDivOfSecondDiv">inner4</div>
+    </div>
+    <div class="mtTestDivs">abhay3</div>
+ 
+    <div class="myTestDiv2">abhay4</div>
+    <div class="myTestDiv2">abhay5</div>
+    <div class="myTestDiv2">abhay6</div>
+<div>
+    <ul>
+
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+    </ul>
+</div>
+ <script src="functionsUnderstanding.js">
+        
+</script>
+
+<ul class="language">
+    <li>
+        javascript
+    </li>
+</ul>
+
+
+</body>
+
+<!-- //=============Create an element by using DOM manipulation================
+<script>
+    let div = document.createElement("div");
+    div.className="DivClassName";
+    div.id=Math.round((Math.random()*10+1));
+    // div.setAttribute("title","Create an element by using DOM manipulation")
+    div.style.color="green";
+    div.style.backgroundColor="red"; 
+    // div.innerText="Abhay inner text";
+    const text = document.createTextNode("Abhay text node content using document");
+    div.appendChild(text);
+    document.body.appendChild(div);
+</script> -->
+
+<!-- <script>
+    function addLanguage(langName){
+        const li = document.createElement("li");
+        li.innerText=`${langName}`;  //*************Here we use String interpolation****************
+        document.querySelector('.language').appendChild(li);
+    }
+    addLanguage("Java");
+</script> -->
+
+<!-- More optimised way in innerText we have to taverse till 
+    the last element of tree soo we use TextNode, its more efficient -->
+<script>
+    function addLanguage(langName){
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(`${langName}`));
+        document.querySelector(".language").appendChild(li);
+    }
+    addLanguage("Java");
+    addLanguage("Python");
+
+    // Edit in DOM
+    const parent = document.querySelector(".language");
+    const secLang = parent.querySelector("li:nth-child(2)");
+    console.log(secLang);
+    const newLi = document.createElement("li");
+    newLi.textContent="Bhai Lang";
+    secLang.replaceWith(newLi);
+</script>
+
+</html>
+
