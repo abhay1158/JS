@@ -1,4 +1,4 @@
-function abc() {
+/* function abc() {
   return 1;
 }
 
@@ -23,7 +23,7 @@ console.log(storeRes2); //it will gives the exact function expression
 
 
 // invoke Kunal function
-console.log(storeRes2()); // it will gives the result of kunal() i.e, inner function
+console.log(storeRes2()); // it will gives the result of kunal() i.e, inner function */
 
 
 

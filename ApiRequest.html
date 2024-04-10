@@ -1,1 +1,60 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Request</title>
+</head>
+<body>
+    <div class="getDetails" id="apiRequest">
+        
+        <img id="image" src="" alt="Profile Pic">
+        <h2 id="name"></h2>
+        <h2 id="follower"></h2>
+        <button type="submit" id="getButton">Get data</button>
+    </div>  
+</body>
+<script>
+    const getDetails = document.querySelector(".getDetails");
+    
+    const button=document.getElementById("getButton");
+    button.addEventListener("click",(event)=>{
+        // by creating the object of the XMLHttpRequest Class we send and receive data from any api
+    const requestUrl = "https://api.github.com/users/hiteshchoudhary"
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET",requestUrl);
+    //give the continuous status of the state. it run the function automatically when there is state change
+    xhr.onreadystatechange= function(){
+        console.log(xhr.readyState);
+
+
+        if(xhr.readyState=== 4){
+
+        // this.responseText give the reponse in text of that api url
+        // JSON.parse convent the response into object type beacuse we have to deal with objects that why we parse it into object
+            const data = JSON.parse (this.responseText);
+            console.log(data);
+
+            const img = data.avatar_url;
+            const name = data.name;
+            const follower = data.followers;
+
+            const profilePic = document.getElementById("image");
+            profilePic.setAttribute("src",`${img}`);
+            
+            const usersName = document.getElementById("name");
+            usersName.innerText = `Name:- ${name}`;
+
+            const usersFollower = document.getElementById("follower");
+            usersFollower.innerText = `followers count:- ${follower}`;
+
+        }
+    }
+    //It tells about the status of state of the request
+    // console.log(xhr.readyState);
+
+    xhr.send();
+    })
+    
+</script>
+</html>
