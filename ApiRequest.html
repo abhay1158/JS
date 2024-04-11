@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,11 +16,11 @@
 </body>
 <script>
     const getDetails = document.querySelector(".getDetails");
-    
+
     const button=document.getElementById("getButton");
     button.addEventListener("click",(event)=>{
         // by creating the object of the XMLHttpRequest Class we send and receive data from any api
-    const requestUrl = "https://api.github.com/users/hiteshchoudhary"
+    const requestUrl = "https://api.github.com/users/abhay1158"
     const xhr = new XMLHttpRequest();
     xhr.open("GET",requestUrl);
     //give the continuous status of the state. it run the function automatically when there is state change
@@ -32,6 +32,7 @@
 
         // this.responseText give the reponse in text of that api url
         // JSON.parse convent the response into object type beacuse we have to deal with objects that why we parse it into object
+        // Most of the time the data which comes is in String format.
             const data = JSON.parse (this.responseText);
             console.log(data);
 
@@ -48,6 +49,24 @@
             const usersFollower = document.getElementById("follower");
             usersFollower.innerText = `followers count:- ${follower}`;
 
+            console.log(getDetails.childElementCount);
+
+            // Reset Button
+                if (resetFlag=== true) {
+                    const resetButton = document.createElement("button");
+                    resetButton.textContent = "Reset";
+                    resetButton.addEventListener("click", () => {
+                        image.setAttribute("src","")
+                        usersName.textContent = "";
+                        usersFollower.textContent = "";
+                         
+                        resetFlag=false;
+                    });
+                    getDetails.appendChild(resetButton);
+                }
+
+
+
         }
     }
     //It tells about the status of state of the request
@@ -57,4 +76,89 @@
     })
     
 </script>
+</html> -->
+
+
+
+
+
+//******************************Optimised and structured one by ChatGPT************************************************************************
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request</title>
+</head>
+<body>
+    <div class="getDetails" id="apiRequest">
+        <!-- <img id="image" src="" alt="Profile Pic"> -->
+        <input type="text" id="urlInput">
+        <h2 id="name"></h2>
+        <h2 id="follower"></h2>
+        <button type="button" id="getButton">Get data</button>
+    </div>
+  
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let resetFlag= true;
+            const getDetails = document.querySelector(".getDetails");
+            // Get Detail button
+            const button = document.getElementById("getButton");
+
+            // const profilePic = document.getElementById("image");
+            
+            //Get the element name
+            const usersName = document.getElementById("name");
+            // For Follower
+            const usersFollower = document.getElementById("follower");
+
+            button.addEventListener("click", () => {
+                const requestUrl = "https://api.github.com/users/abhay1158";
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", requestUrl);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
+                        updateUI(data);
+                    }
+                };
+                xhr.send();
+            });
+
+            function updateUI(data) {
+                const img = data.avatar_url;
+                const name = data.name;
+                const follower = data.followers;
+
+                // profilePic.setAttribute("src", img);
+
+                // Render image of user by creating img element
+                const image = document.createElement("img");
+                image.setAttribute("src",img);
+                getDetails.appendChild(image);
+                usersName.textContent = `Name: ${name}`;
+                usersFollower.textContent = `Followers count: ${follower}`;
+
+                // Reset Button
+                if (resetFlag=== true) {
+                    const resetButton = document.createElement("button");
+                    resetButton.textContent = "Reset";
+                    resetButton.addEventListener("click", () => {
+                        // profilePic.setAttribute("src", "");
+                        image.setAttribute("src","")
+
+                        usersName.textContent = "";
+                        usersFollower.textContent = "";
+
+                         
+                        resetFlag=false;
+                    });
+                    getDetails.appendChild(resetButton);
+                }
+            }
+        });
+    </script>
+</body>
 </html>
