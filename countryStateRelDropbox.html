@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Country and State Dropdowns</title>
+</head>
+<body>
+
+<select id="country" onchange="populateStates()">
+  <option value="">Select Country</option>
+  <option value="USA">USA</option>
+  <option value="Canada">Canada</option>
+  <!-- Add more countries as needed -->
+</select>
+
+<select id="state">
+  <option value="">Select State</option>
+  <!-- States will be populated dynamically based on selected country -->
+</select>
+
+<script>
+// Define states for each country
+const states = {
+  "USA": ["New York", "California", "Texas", "Florida"],
+  "Canada": ["Ontario", "Quebec", "British Columbia", "Alberta"]
+  // Add more countries and their states as needed
+};
+
+function populateStates() {
+  const countrySelect = document.getElementById("country");
+  const stateSelect = document.getElementById("state");
+  const selectedCountry = countrySelect.value;
+  
+  // Clear existing options
+  stateSelect.innerHTML = '<option value="">Select State</option>';
+  
+  // Populate with states based on selected country
+  if (selectedCountry && states[selectedCountry]) {
+    states[selectedCountry].forEach(function(state) {
+      const option = document.createElement("option");
+      option.text = state;
+      option.value = state;
+      stateSelect.add(option);
+    });
+  }
+}
+</script>
+
+</body>
+</html>

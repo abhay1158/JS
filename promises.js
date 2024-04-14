@@ -1,6 +1,6 @@
 
 
-const promiseOne = new Promise(function(resolve,reject){
+/* const promiseOne = new Promise(function(resolve,reject){
     //Do an async task
     //Do calls, cyptography, network
 
@@ -27,4 +27,29 @@ new Promise(function(resolve,reject){
         console.log("Async task 2");
         resolve();
     },1000)
-}).then(function(){ console.log("Promise 2 consumed");});
+}).then(function(){ console.log("Promise 2 consumed");}); */
+
+
+/* // Passing the value object, array in the argument of resolve function
+const promisesThree = new Promise(function(resolve,reject){
+    setTimeout(function(){
+        resolve({userName : "Abhay1158", 
+        email : "abhayp.singh200029@gmail.com"});
+    },1000)
+});
+
+promisesThree.then(function(user){
+    console.log(user);
+}); */
+
+
+const user= {userName : "abhay1158",emial:"lotsofcraving@gmial.com"}
+//Here we learn callBack hell .then chaining
+const promiseFour = new Promise(function(resolve,reject){
+    let error=true;
+    if(!error){
+        setTimeout(function(user){
+
+        },1000)/*  
+    
+});
