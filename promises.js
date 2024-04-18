@@ -50,6 +50,6 @@ const promiseFour = new Promise(function(resolve,reject){
     if(!error){
         setTimeout(function(user){
 
-        },1000)/*  
+        },1000)
     
 });
